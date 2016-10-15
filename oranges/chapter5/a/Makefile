@@ -1,6 +1,6 @@
 #this is the makefile for compile .asm file in linux plantform using gcc and nasm
 
-include ../../comMK/Makefile.mk
+include ../../commk/Makefile
 
 
 SRC=hello.asm
@@ -15,7 +15,7 @@ all : $(EXE)
 	@echo "make done";
 
 %.o : %.asm
-	$(NASM) $(ELFFLAGS) $< -o $@
+	$(ASM) $(ELFFLAGS) $< -o $@
 	
 $(EXE) : $(OBJ)
 	

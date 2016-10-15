@@ -3,12 +3,11 @@
 #######################
 
 # Programs, flags, etc.
-ASM		= nasm
-CC		= gcc
-LD		= ld
-ASMFLAGS	= -f elf
-CFLAGS		= -c
-LDFLAGS		= -s
+include ../../commk/Makefile
+
+ASMFLAGS	+= $(ELFFLAGS)
+CFLAGS		+= -c $(GCC_ARC_I386)
+LDFLAGS		= $(STRIPALL) $(ARC_I386)
 
 # This Program
 BIN		= foobar
