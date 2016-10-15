@@ -5,7 +5,7 @@
 [Menu](#Menu)</br>
 [Description](#Description)</br>
 [Including](#Including)</br>
-[Oters](#Oters)
+[Others](#Others)
 
 <a name="Description"></a>
 ##[Description](#Menu)
@@ -17,7 +17,7 @@
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;<strong>orange's</strong> is about the books < Orange's: the implementation of a simple opreation of system > written by Yu Yuan. it's about the implementation of a simple Operation System, The Yu called it Oranges. </p>
 
 <a name="Oters"></a>
-##[Oters](#Menu)
+##[Others](#Menu)
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;It's great honours to me if it can make any benefit for you. Any problems in using it, please contract <a href="mailto:newplan001@163.com"><strong>ME</strong></a>.</p>
 
 <p align="right">NEWPLAN</br>2016/10/15</p>
