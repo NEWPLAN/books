@@ -9,7 +9,7 @@
 
 <a name="Description"></a>
 ##[Description](#Menu)
-<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;This responbility is consisted of some thought, notices and some codes when i read about < Oranges >. all the codes are checked one by one and try to make sure that ecah codes is running correctlly in <em> Linux Plantform</em> :).</br>&nbsp;&nbsp;&nbsp;&nbsp;There are 13 folds in it.</br>
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;This responbility is consisted of some thought, notices and some codes when i read about < Oranges >. all the codes are checked one by one and try to make sure that ecah codes is running correctlly in <em> Linux Plantform</em> :).</br>&nbsp;&nbsp;&nbsp;&nbsp;There are 9 folders in it.</br>
 the chap1 is about a simple and basic boots code. using .asm.</br>
 the chap3 is about protect modle on X86 plantform. using .asm</br>
 the chap4 is about advanced protect modle on X86 plantform. using .asm</br>
