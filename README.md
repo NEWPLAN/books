@@ -9,7 +9,7 @@
 
 <a name="Description"></a>
 ##[Description](#Menu)
-<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;This responbility is consisted of some thought and notices when i read book. try to make sure that ecah codes is running correctlly.</p>
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;This responbility is consisted of some thought and notices when i read book. I have tried to make sure that ecah codes is running correctlly.</p>
 
 
 <a name="Including"></a>
