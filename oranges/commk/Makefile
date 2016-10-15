@@ -3,7 +3,8 @@
 CC		=	gcc
 CPP		=	g++
 LD		=	ld
-NASM	=	nasm
+ASM		=	nasm
 
 ELFFLAGS=	-f elf
 ARC_I386=	-m elf_i386
+STRIPALL=	-s
