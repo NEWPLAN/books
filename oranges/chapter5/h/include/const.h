@@ -13,7 +13,7 @@
 #define EXTERN extern
 
 /* 函数类型 */
-#define	PUBLIC		/* PUBLIC is the opposite of PRIVATE */
+#define	PUBLIC			/* PUBLIC is the opposite of PRIVATE */
 #define	PRIVATE	static	/* PRIVATE x limits the scope of x */
 
 /* GDT 和 IDT 中描述符的个数 */
