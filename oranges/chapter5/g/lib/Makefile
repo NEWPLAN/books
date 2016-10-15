@@ -2,14 +2,14 @@
 include ../../../commk/Makefile
 
 # Programs, flags, etc.
-ASM_SEARCH_PATH		= -I include/
+ASM_SEARCH_PATH		= -I ./
 
-ASMFLAGS	= $(ASM_SEARCH_PATH)
+ASMFLAGS	= $(ASM_SEARCH_PATH) $(ELFFLAGS)
 
 # This Program
-ASM_SRC		= boot.asm loader.asm
-ASM_INCLUDE	= include/load.inc include/fat12hdr.inc include/pm.inc
-TARGET		= boot.bin loader.bin
+ASM_SRC		= string.asm kliba.asm
+ASM_INCLUDE	= 
+TARGET		= string.o kliba.o
 
 # All Phony Targets
 .PHONY : everything clean all
@@ -22,5 +22,5 @@ clean :
 
 all : clean everything
 
-%.bin: %.asm $(ASM_INCLUDE)
+%.o: %.asm $(ASM_INCLUDE)
 	$(ASM) $(ASMFLAGS) -o $@ $<

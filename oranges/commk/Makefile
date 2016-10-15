@@ -20,3 +20,5 @@ ARC_I386		=	-m elf_i386
 STRIPALL		=	-s 
 GCC_NO_BUILDIN	=	-fno-builtin 
 GCC_ARC_I386	=	-m32
+GCC_COMPILE		=	-c
+
