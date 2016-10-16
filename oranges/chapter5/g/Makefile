@@ -13,7 +13,7 @@ ENTRYOFFSET	=   0x400
 # Programs, flags, etc.
 ASM_BOOT_SEARCH_PATH 	= -I boot/include/
 ASM_KERNEL_SEARCH_PATH	= -I include/
-GCC_COMP_SEARCH_PATH	= -I include/
+GCC_COMP_SEARCH_PATH	= -I include/ $(GCC_NO_STDINC)
 
 # compile parameters
 ASMBFLAGS	= $(ASM_BOOT_SEARCH_PATH)

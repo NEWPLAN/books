@@ -3,13 +3,13 @@ include ../../../commk/Makefile
 
 # Programs, flags, etc.
 ASM_SEARCH_PATH		= -I ./
-GCC_COMP_SEARCH_PATH= -I ../include/
+GCC_COMP_SEARCH_PATH= -I ../include/ $(GCC_NO_STDINC) 
 ASMFLAGS	= $(ASM_SEARCH_PATH) $(ELFFLAGS)
 
 # This Program
 ASM_SRC		= kernel.asm
 ASM_INCLUDE	= 
-CFLAGS		= $(GCC_COMP_SEARCH_PATH) $(GCC_COMPILE) $(GCC_NO_BUILDIN) $(GCC_ARC_I386) 
+CFLAGS		= $(GCC_COMP_SEARCH_PATH) $(GCC_COMPILE) $(GCC_NO_BUILDIN) $(GCC_ARC_I386) $(GCC_WARNING)
 GCC_INCLUDE	= ../include/type.h ../include/const.h ../include/protect.h
 TARGET		= kernel.o start.o
 

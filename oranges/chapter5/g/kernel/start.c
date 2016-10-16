@@ -5,9 +5,9 @@
                                                     Forrest Yu, 2005
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-#include "type.h"
-#include "const.h"
-#include "protect.h"
+#include <type.h>
+#include <const.h>
+#include <protect.h>
 
 PUBLIC	void*	memcpy(void* pDst, void* pSrc, int iSize);
 PUBLIC void	disp_str(char * pszInfo);
