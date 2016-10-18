@@ -5,7 +5,7 @@
 SRC:=pmtest2.asm
 BIN:=$(subst .asm,.com,$(SRC))
 
-.PHONY : everything
+.PHONY : everything clean
 
 everything : $(BIN)
 	sudo mount -o loop pm.img /mnt/floppy/
@@ -14,4 +14,5 @@ everything : $(BIN)
 
 $(BIN) : $(SRC)
 	nasm $< -o $@
-
+clean:	
+	rm -f $(BIN)
