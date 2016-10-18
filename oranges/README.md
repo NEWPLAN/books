@@ -27,7 +27,7 @@ the commk is about a common makefile in a kernel</br>
 <a name="Tools"></a>
 ##[Tools](#Menu)
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;To run those codes, you need install some tools:</br>
-<strong>bochs</strong> -- is an simulator of X86 plantform. the lasted version is 2.4.6, you can install it by ` sodo apt-get install bochs bochs-x bximage vgabios` or by sources ( it is too difficult for me to install it, some bugs can't be fixed)</br>
+<strong>bochs</strong> -- is an simulator of X86 plantform. the lasted version is 2.4.6, you can install it by ` sudo apt-get install bochs bochs-x bximage vgabios` or by sources ( you can use this method to install a version without debug, to install a debug version, you should install it by source, it's reall complicated, <a href="http://blog.csdn.net/u011889952/article/details/45397355">reference here</a> )</br>
 <strong>qemu</strong> -- is another simulator of X86 plantform. you just need to choose one of them to simulate your kernel.</br>
 <strong>xxd</strong> -- is a tool for analysising memory and file system used in our proj.</br>
 <strong>readelf</strong> -- is a tool for analysising memory and file system used in our proj.</br>
