@@ -13,7 +13,7 @@
 the chap1 is about a simple and basic boots code. using .asm.</br>
 the chap3 is about protect modle on X86 plantform. using .asm</br>
 the chap4 is about advanced protect modle on X86 plantform. using .asm</br>
-the chap5 is about a oroginal kernel, using .asm and .c</br>
+the chap5 is about a oroginal kernel, using .asm and .c, in this part the author using C to code and init IDT/GDT... finally, open the 83599 interrupter and capture signal of keyboard</br>
 the chap6 is about process in a kernel</br>
 the chap7 is about I/O system in a kernel</br>
 the chap8 is about IPC ( internal process communication ) in a kernel</br>

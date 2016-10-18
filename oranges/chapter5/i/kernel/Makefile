@@ -7,15 +7,11 @@ GCC_COMP_SEARCH_PATH= -I ../include/ $(GCC_NO_STDINC)
 ASMFLAGS	= $(ASM_SEARCH_PATH) $(ELFFLAGS)
 
 # This Program
-ASM_SRC		= string.asm kliba.asm
+ASM_SRC		= kernel.asm
 ASM_INCLUDE	= 
-
-C_SRC		= klib.c
-
 CFLAGS		= $(GCC_COMP_SEARCH_PATH) $(GCC_COMPILE) $(GCC_NO_BUILDIN) $(GCC_ARC_I386) $(GCC_WARNING) $(GCC_NO_STACK_PROTECT) 
-GCC_INCLUDE	= ../include/type.h ../include/const.h ../include/protect.h ../include/string.h ../include/global.h 
-
-TARGET		= klib.o string.o kliba.o
+GCC_INCLUDE	= ../include/type.h ../include/const.h ../include/protect.h ../include/global.h ../include/proto.h
+TARGET		= kernel.o start.o global.o i8259.o protect.o
 
 # All Phony Targets
 .PHONY : everything clean all
@@ -28,14 +24,18 @@ clean :
 
 all : clean everything
 
-# C files
-klib.o:klib.c $(GCC_INCLUDE)
+kernel.o: kernel.asm $(ASM_INCLUDE)
+	$(ASM) $(ASMFLAGS) -o $@ $<
+
+start.o:start.c $(GCC_INCLUDE)
+	$(CC) $(CFLAGS) -o $@ $<
+	
+global.o: global.c $(GCC_INCLUDE)
 	$(CC) $(CFLAGS) -o $@ $<
 
-# ASM file
-kliba.o: kliba.asm $(ASM_INCLUDE)
-	$(ASM) $(ASMFLAGS) -o $@ $<
+i8259.o: i8259.c $(GCC_INCLUDE)
+	$(CC) $(CFLAGS) -o $@ $<
 
-string.o: string.asm $(ASM_INCLUDE)
-	$(ASM) $(ASMFLAGS) -o $@ $<
+protect.o: protect.c $(GCC_INCLUDE)
+	$(CC) $(CFLAGS) -o $@ $<
 
