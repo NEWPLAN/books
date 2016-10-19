@@ -7,11 +7,11 @@ GCC_COMP_SEARCH_PATH= $(GCC_NO_STDINC) -I ../include/
 ASMFLAGS	= $(ASM_SEARCH_PATH) $(ELFFLAGS)
 
 # This Program
-ASM_SRC		= kernel.final.asm
+ASM_SRC		= kernel.final.asm kernel1.asm kernel2.asm kernel3.asm kernel4.asm kernel5.asm
 ASM_INCLUDE	= 
 CFLAGS		= $(GCC_COMP_SEARCH_PATH) $(GCC_NO_BUILDIN) $(GCC_ARC_I386) $(GCC_WARNING) $(GCC_NO_STACK_PROTECT) $(GCC_COMPILE)
 #GCC_INCLUDE	= ../include/type.h ../include/const.h ../include/protect.h ../include/global.h ../include/proto.h
-TARGET		= kernel.final.o start.o global.o i8259.o protect.o main.o
+TARGET		= kernel.o start.o global.o i8259.o protect.o main.o
 
 # All Phony Targets
 .PHONY : everything clean all
