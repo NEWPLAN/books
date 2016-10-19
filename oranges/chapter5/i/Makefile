@@ -23,10 +23,10 @@ LDFLAGS		= $(STRIPALL) -Ttext $(ENTRYPOINT) $(ARC_I386)
 DASMFLAGS	= -u -o $(ENTRYPOINT) -e $(ENTRYOFFSET)
 
 # This Program
-ORANGESBOOT	= boot/boot.bin boot/loader.bin
+ORANGESBOOT		= boot/boot.bin boot/loader.bin
 ORANGESKERNEL	= kernel.bin
-OBJS		= kernel/kernel.o kernel/start.o kernel/i8259.o kernel/global.o kernel/protect.o lib/klib.o lib/kliba.o lib/string.o
-DASMOUTPUT	= kernel.bin.asm
+OBJS			= kernel/kernel.o kernel/start.o kernel/i8259.o kernel/global.o kernel/protect.o lib/klib.o lib/kliba.o lib/string.o
+DASMOUTPUT		= kernel.bin.asm
 IMG				= a.img
 # All Phony Targets
 .PHONY : everything final image clean realclean disasm all buildimg
@@ -41,12 +41,11 @@ final : all clean
 image : final buildimg
 
 clean :
-	rm -f $(OBJS)
-
-realclean :
 	make clean -C kernel;
 	make clean -C lib;
 	make clean -C boot;
+
+realclean : clean	
 	rm -f $(IMG) $(ORANGESKERNEL);
 
 disasm :

@@ -6,16 +6,16 @@
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 
-#include "type.h"
-#include "const.h"
-#include "protect.h"
-#include "proto.h"
+#include <type.h>
+#include <const.h>
+#include <protect.h>
+#include <proto.h>
 
 
 /*======================================================================*
                             init_8259A
  *======================================================================*/
-PUBLIC void init_8259A()
+PUBLIC void init_8259A(void)
 {
 	out_byte(INT_M_CTL,	0x11);			// Master 8259, ICW1.
 	out_byte(INT_S_CTL,	0x11);			// Slave  8259, ICW1.

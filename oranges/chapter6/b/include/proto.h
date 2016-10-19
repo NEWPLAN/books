@@ -4,6 +4,10 @@
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                                                     Forrest Yu, 2005
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+#ifndef __PROTO_H__
+#define __PROTO_H__
+
+#include <const.h>
 
 /* klib.asm */
 PUBLIC void	out_byte(u16 port, u8 value);
@@ -17,9 +21,15 @@ PUBLIC u32	seg2phys(u16 seg);
 
 /* klib.c */
 PUBLIC void	delay(int time);
+PUBLIC void disp_int(int input);
 
 /* kernel.asm */
 void restart();
 
 /* main.c */
 void TestA();
+
+/* i8259.c */
+PUBLIC void init_8259A(void);
+
+#endif
