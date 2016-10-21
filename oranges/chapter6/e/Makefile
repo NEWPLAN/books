@@ -22,10 +22,14 @@ CFLAGS		= $(GCC_COMP_SEARCH_PATH) $(GCC_COMPILE) $(GCC_NO_BUILDIN) $(GCC_ARC_I38
 LDFLAGS		= $(STRIPALL) -Ttext $(ENTRYPOINT) $(ARC_I386) 
 DASMFLAGS	= -u -o $(ENTRYPOINT) -e $(ENTRYOFFSET)
 
+# different objs from different folders
+OBJ_KERNEL	= kernel/kernel.o kernel/start.o kernel/main.o kernel/i8259.o kernel/global.o kernel/protect.o kernel/clock.o 
+OBJ_LIB		= lib/kliba.o lib/klib.o lib/string.o
+
 # This Program
 ORANGESBOOT	= boot/boot.bin boot/loader.bin
 ORANGESKERNEL	= kernel.bin
-OBJS		= kernel/kernel.o kernel/start.o kernel/main.o kernel/i8259.o kernel/global.o kernel/protect.o kernel/clock.o lib/kliba.o lib/klib.o lib/string.o
+OBJS		= $(OBJ_KERNEL) $(OBJ_LIB)
 DASMOUTPUT	= kernel.bin.asm
 IMG			= a.img
 
@@ -69,35 +73,11 @@ boot/loader.bin :
 $(ORANGESKERNEL) : $(OBJS)
 	$(LD) $(LDFLAGS) -o $(ORANGESKERNEL) $(OBJS)
 
-kernel/kernel.o : 
-	make kernel.o -C kernel;
-
-kernel/start.o:
-	make start.o -C kernel;
-
-kernel/main.o:
-	make main.o -C kernel;
-
-kernel/i8259.o:
-	make i8259.o -C kernel;
-
-kernel/global.o: 
-	make global.o -C kernel;
-
-kernel/protect.o: 
-	make protect.o -C kernel;
+$(OBJ_KERNEL):
+	make -C kernel;
 	
-kernel/clock.o: 
-	make clock.o -C kernel;
-
-lib/klib.o:
-	make klib.o -C lib;
-
-lib/kliba.o : 
-	make kliba.o -C lib;
-
-lib/string.o :
-	make string.o -C lib;
+$(OBJ_LIB):
+	make -C lib;
 	
 $(IMG):
 	qemu-img create -f raw $(IMG) 1440K;
