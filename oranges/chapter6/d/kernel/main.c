@@ -12,7 +12,7 @@
 #include "string.h"
 #include "proc.h"
 #include "global.h"
-
+#include <string.h>
 
 /*======================================================================*
                             kernel_main

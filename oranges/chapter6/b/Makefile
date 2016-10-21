@@ -22,12 +22,17 @@ CFLAGS		= $(GCC_COMP_SEARCH_PATH) $(GCC_COMPILE) $(GCC_NO_BUILDIN) $(GCC_ARC_I38
 LDFLAGS		= $(STRIPALL) -Ttext $(ENTRYPOINT) $(ARC_I386) 
 DASMFLAGS	= -u -o $(ENTRYPOINT) -e $(ENTRYOFFSET)
 
+# different objs from different folders
+OBJ_KERNEL	= kernel/kernel.o kernel/start.o kernel/main.o kernel/i8259.o kernel/global.o kernel/protect.o
+OBJ_LIB		= lib/kliba.o lib/klib.o lib/string.o
+
 # This Program
 ORANGESBOOT	= boot/boot.bin boot/loader.bin
 ORANGESKERNEL	= kernel.bin
-OBJS		= kernel/kernel.o kernel/start.o kernel/main.o kernel/i8259.o kernel/global.o kernel/protect.o lib/kliba.o lib/klib.o lib/string.o
+OBJS		= $(OBJ_KERNEL) $(OBJ_LIB)
 DASMOUTPUT	= kernel.bin.asm
 IMG			= a.img
+
 
 # All Phony Targets
 .PHONY : everything final image clean realclean disasm all buildimg stage1 stage2 stage3 stage4 one two three four five lastone
@@ -91,6 +96,15 @@ buildimg : $(IMG)
 	sudo cp -fv $(ORANGESKERNEL) /mnt/floppy
 	sudo umount /mnt/floppy
 
+
+
+$(OBJ_KERNEL):
+	make -C kernel;
+	
+$(OBJ_LIB):
+	make -C lib;
+
+
 boot/boot.bin : 
 	make boot.bin -C boot;
 
@@ -100,32 +114,33 @@ boot/loader.bin :
 $(ORANGESKERNEL) : $(OBJS)
 	$(LD) $(LDFLAGS) -o $(ORANGESKERNEL) $(OBJS)
 
-kernel/kernel.o : 
-	make kernel.o -C kernel;
 
-kernel/start.o:
-	make start.o -C kernel;
+# kernel/kernel.o : 
+# 	make kernel.o -C kernel;
 
-kernel/main.o:
-	make main.o -C kernel;
+# kernel/start.o:
+# 	make start.o -C kernel;
 
-kernel/i8259.o:
-	make i8259.o -C kernel;
+# kernel/main.o:
+# 	make main.o -C kernel;
 
-kernel/global.o: 
-	make global.o -C kernel;
+# kernel/i8259.o:
+# 	make i8259.o -C kernel;
 
-kernel/protect.o: 
-	make protect.o -C kernel;
+# kernel/global.o: 
+# 	make global.o -C kernel;
 
-lib/klib.o:
-	make klib.o -C lib;
+# kernel/protect.o: 
+# 	make protect.o -C kernel;
 
-lib/kliba.o : 
-	make kliba.o -C lib;
+# lib/klib.o:
+# 	make klib.o -C lib;
 
-lib/string.o :
-	make string.o -C lib;
+# lib/kliba.o : 
+# 	make kliba.o -C lib;
+
+# lib/string.o :
+# 	make string.o -C lib;
 	
 $(IMG):
 	qemu-img create -f raw $(IMG) 1440K;

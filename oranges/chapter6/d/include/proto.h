@@ -12,15 +12,20 @@ PUBLIC void	disp_str(char * info);
 PUBLIC void	disp_color_str(char * info, int color);
 
 /* protect.c */
-PUBLIC void	init_prot();
+PUBLIC void	init_prot(void);
 PUBLIC u32	seg2phys(u16 seg);
 
 /* klib.c */
 PUBLIC void	delay(int time);
+PUBLIC void disp_int(int input);
 
 /* kernel.asm */
 void restart();
 
+/* i8259.c */
+PUBLIC void init_8259A(void);
+
+
 /* main.c */
-void TestA();
-void TestB();
+void TestA(void);
+void TestB(void);
