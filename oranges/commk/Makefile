@@ -28,7 +28,7 @@ ASM_ARC_I386	=	-m elf_i386
 ASM_STRIPALL	=	-s 
 #	GCC_NO_BUILDIN is parameter to point our local lib without global libs.
 #	GCC_NO_STDINC is parameter to switch off search from stdinclude lib,just search from the -I path
-#	GCC_WARNING is a parameter for end up compiling while get some warnings, just to make the code more leagal 
+#	GCC_WARNING is a parameter for show all warnings while compiling, just to make the code more leagal 
 #	GCC_NO_STACK_PROTECT is a parameter to disable the switch of stack protect.
 GCC_NO_BUILDIN			=	-fno-builtin 
 GCC_NO_STDINC			=	-nostdinc

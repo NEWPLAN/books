@@ -17,6 +17,7 @@ PUBLIC u32	seg2phys(u16 seg);
 
 /* klib.c */
 PUBLIC void	delay(int time);
+PUBLIC void disp_int(int input);
 
 /* kernel.asm */
 void restart();

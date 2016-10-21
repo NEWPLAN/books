@@ -55,6 +55,6 @@ void TestA()
 		disp_str("A");
 		disp_int(i++);
 		disp_str(".");
-		delay(1);
+		delay(100);
 	}
 }
