@@ -25,7 +25,7 @@ LABEL_DESC_TSS:        Descriptor 0,          TSSLen-1, DA_386TSS
 LABEL_DESC_VIDEO:      Descriptor 0B8000h,     0ffffh, DA_DRW+DA_DPL3
 
 ; 门                               目标选择子,偏移,DCount, 属性
-LABEL_CALL_GATE_TEST: Gate SelectorCodeDest,   0,     0, DA_386CGate+DA_DPL3
+LABEL_CALL_GATE_TEST: Gate SelectorCodeDest,   0,     0, DA_386CGate+DA_DPL3;（这里为什么用加号而不是用或，是因为gate宏定义导致，可以参考代码进行分析）
 ; GDT 结束
 
 GdtLen		equ	$ - LABEL_GDT	; GDT长度
