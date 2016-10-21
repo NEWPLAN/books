@@ -19,7 +19,7 @@ HEADS				= const.h protect.h type.h
 IMG 				= a.img 
 
 LD_FLAGS 			+= $(ARC_I386) $(LD_ENTRY_FLAGS) $(STRIPALL)
-GCC_FLAGS			+= $(GCC_ARC_I386) $(GCC_NO_BUILDIN) 
+GCC_FLAGS			+= $(GCC_ARC_I386) $(GCC_NO_BUILDIN) $(GCC_WARNING)
 ASM_FLAGS			+= $(ELFFLAGS)
 # All Phony Targets
 .PHONY : everything final image clean realclean all buildimg

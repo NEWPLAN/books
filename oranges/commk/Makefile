@@ -32,7 +32,7 @@ ASM_STRIPALL	=	-s
 #	GCC_NO_STACK_PROTECT is a parameter to disable the switch of stack protect.
 GCC_NO_BUILDIN			=	-fno-builtin 
 GCC_NO_STDINC			=	-nostdinc
-GCC_WARNING				=	-Werror
+GCC_WARNING				=	-Wall -Wextra
 GCC_ARC_I386			=	-m32
 GCC_COMPILE				=	-c
 GCC_NO_STACK_PROTECT	=	-fno-stack-protector
