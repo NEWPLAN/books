@@ -5,30 +5,34 @@
 # Entry point of Orange'S
 # It must have the same value with 'KernelEntryPointPhyAddr' in load.inc!
 ENTRYPOINT	= 0x30400
-
+include ../../commk/Makefile
 # Offset of entry point in kernel file
 # It depends on ENTRYPOINT
 ENTRYOFFSET	=   0x400
 
 # Programs, flags, etc.
-ASM		= nasm
-DASM		= ndisasm
-CC		= gcc
-LD		= ld
-ASMBFLAGS	= -I boot/include/
-ASMKFLAGS	= -I include/ -f elf
-CFLAGS		= -I include/ -c -fno-builtin
-LDFLAGS		= -s -Ttext $(ENTRYPOINT)
+ASM_BOOT_SEARCH_PATH 	= -I boot/include/
+ASM_KERNEL_SEARCH_PATH	= -I include/
+GCC_COMP_SEARCH_PATH	= -I include/ $(GCC_NO_STDINC) 
+
+# compile parameters
+ASMBFLAGS	= $(ASM_BOOT_SEARCH_PATH)
+ASMKFLAGS	= $(ASM_KERNEL_SEARCH_PATH) $(ELFFLAGS)
+CFLAGS		= $(GCC_COMP_SEARCH_PATH) $(GCC_COMPILE) $(GCC_NO_BUILDIN) $(GCC_ARC_I386) $(GCC_NO_STACK_PROTECT) 
+LDFLAGS		= $(STRIPALL) -Ttext $(ENTRYPOINT) $(ARC_I386) 
 DASMFLAGS	= -u -o $(ENTRYPOINT) -e $(ENTRYOFFSET)
+
+# different objs from different folders
+OBJ_KERNEL	= kernel/kernel.o kernel/syscall.o kernel/start.o kernel/main.o kernel/clock.o kernel/keyboard.o kernel/i8259.o kernel/tty.o kernel/global.o kernel/protect.o kernel/proc.o
+
+OBJ_LIB		= lib/kliba.o lib/klib.o lib/string.o
 
 # This Program
 ORANGESBOOT	= boot/boot.bin boot/loader.bin
 ORANGESKERNEL	= kernel.bin
-OBJS		= kernel/kernel.o kernel/syscall.o kernel/start.o kernel/main.o\
-			kernel/clock.o kernel/keyboard.o kernel/tty.o\
-			kernel/i8259.o kernel/global.o kernel/protect.o kernel/proc.o\
-			lib/kliba.o lib/klib.o lib/string.o
+OBJS		= $(OBJ_KERNEL) $(OBJ_LIB)
 DASMOUTPUT	= kernel.bin.asm
+IMG			= a.img
 
 # All Phony Targets
 .PHONY : everything final image clean realclean disasm all buildimg
@@ -37,81 +41,49 @@ DASMOUTPUT	= kernel.bin.asm
 nop :
 	@echo "why not \`make image' huh? :)"
 
+
 everything : $(ORANGESBOOT) $(ORANGESKERNEL)
 
 all : realclean everything
 
-image : realclean everything clean buildimg
+final : all clean
+
+image : final buildimg
 
 clean :
-	rm -f $(OBJS)
+	make clean -C kernel;
+	make clean -C lib;
+	make clean -C boot;
 
-realclean :
-	rm -f $(OBJS) $(ORANGESBOOT) $(ORANGESKERNEL)
+realclean : clean	
+	rm -f $(IMG) $(ORANGESKERNEL);
 
 disasm :
 	$(DASM) $(DASMFLAGS) $(ORANGESKERNEL) > $(DASMOUTPUT)
 
 # We assume that "a.img" exists in current folder
-buildimg :
-	dd if=boot/boot.bin of=a.img bs=512 count=1 conv=notrunc
-	sudo mount -o loop a.img /mnt/floppy/
+buildimg : $(IMG)
+	dd if=boot/boot.bin of=$(IMG) bs=512 count=1 conv=notrunc
+	sudo mount -o loop $(IMG) /mnt/floppy/
 	sudo cp -fv boot/loader.bin /mnt/floppy/
-	sudo cp -fv kernel.bin /mnt/floppy
+	sudo cp -fv $(ORANGESKERNEL) /mnt/floppy
 	sudo umount /mnt/floppy
 
-boot/boot.bin : boot/boot.asm boot/include/load.inc boot/include/fat12hdr.inc
-	$(ASM) $(ASMBFLAGS) -o $@ $<
+boot/boot.bin : 
+	make boot.bin -C boot;
 
-boot/loader.bin : boot/loader.asm boot/include/load.inc boot/include/fat12hdr.inc boot/include/pm.inc
-	$(ASM) $(ASMBFLAGS) -o $@ $<
+boot/loader.bin :
+	make loader.bin -C boot;
 
 $(ORANGESKERNEL) : $(OBJS)
 	$(LD) $(LDFLAGS) -o $(ORANGESKERNEL) $(OBJS)
 
-kernel/kernel.o : kernel/kernel.asm include/sconst.inc
-	$(ASM) $(ASMKFLAGS) -o $@ $<
+$(OBJ_KERNEL):
+	make -C kernel;
+	
+$(OBJ_LIB):
+	make -C lib;
+	
+$(IMG):
+	qemu-img create -f raw $(IMG) 1440K;
 
-kernel/syscall.o : kernel/syscall.asm include/sconst.inc
-	$(ASM) $(ASMKFLAGS) -o $@ $<
-
-kernel/start.o: kernel/start.c include/type.h include/const.h include/protect.h include/string.h include/proc.h include/proto.h \
-			include/global.h
-	$(CC) $(CFLAGS) -o $@ $<
-
-kernel/main.o: kernel/main.c include/type.h include/const.h include/protect.h include/string.h include/proc.h include/proto.h \
-			include/global.h
-	$(CC) $(CFLAGS) -o $@ $<
-
-kernel/clock.o: kernel/clock.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-kernel/keyboard.o: kernel/keyboard.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-kernel/tty.o: kernel/tty.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-kernel/i8259.o: kernel/i8259.c include/type.h include/const.h include/protect.h include/proto.h
-	$(CC) $(CFLAGS) -o $@ $<
-
-kernel/global.o: kernel/global.c include/type.h include/const.h include/protect.h include/proc.h \
-			include/global.h include/proto.h
-	$(CC) $(CFLAGS) -o $@ $<
-
-kernel/protect.o: kernel/protect.c include/type.h include/const.h include/protect.h include/proc.h include/proto.h \
-			include/global.h
-	$(CC) $(CFLAGS) -o $@ $<
-
-kernel/proc.o: kernel/proc.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-lib/klib.o: lib/klib.c include/type.h include/const.h include/protect.h include/string.h include/proc.h include/proto.h \
-			include/global.h
-	$(CC) $(CFLAGS) -o $@ $<
-
-lib/kliba.o : lib/kliba.asm
-	$(ASM) $(ASMKFLAGS) -o $@ $<
-
-lib/string.o : lib/string.asm
-	$(ASM) $(ASMKFLAGS) -o $@ $<
