@@ -90,7 +90,7 @@ PUBLIC int kernel_main()
 
         proc_table[NR_TASKS + 0].nr_tty = 0;
         proc_table[NR_TASKS + 1].nr_tty = 1;
-        proc_table[NR_TASKS + 2].nr_tty = 1;
+        proc_table[NR_TASKS + 2].nr_tty = 2;
 
 	k_reenter = 0;
 	ticks = 0;
@@ -146,7 +146,7 @@ void TestB()
  *======================================================================*/
 void TestC()
 {
-	/* assert(0); */
+	assert(0); 
 	while(1){
 		printf("C");
 		milli_delay(200);

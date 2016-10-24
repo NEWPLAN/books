@@ -31,8 +31,8 @@ PUBLIC void task_tty()
 {
 	TTY*	p_tty;
 
-	/* panic("in TTY"); */
-	/* assert(0); */
+//	panic("in TTY"); 
+//	assert(0); 
 
 	init_keyboard();
 
