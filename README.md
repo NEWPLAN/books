@@ -15,8 +15,8 @@
 <a name="Including"></a>
 ##[Including](#Menu)
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;<strong>orange's</strong> is about the books < Orange's: the implementation of a simple opreation of system > written by Yu Yuan. it's about the implementation of a simple Operation System, The Yu called it Oranges. </p>
-<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;<strong>osask</strong> is about the books < Orange's: the implementation of a simple opreation of system > written by Yu Yuan. it's about the implementation of a simple Operation System, The Yu called it Oranges. </p>
-<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;<strong>orange's</strong> is about the books < Orange's: the implementation of a simple opreation of system > written by Yu Yuan. it's about the implementation of a simple Operation System, The Yu called it Oranges. </p>
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;<strong>osask</strong> is about the books < Create an Operating System within 30 days> written by Hidemi Kawai. it's about the implementation of a simple Operation System based on X86, a 32Bit system with a GUI. </p>
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;<strong>TCC</strong> is a tiny compiler for C language written by Fabrice Bellard, support C99 std. It is small fast safety and unlimited, in this section, we will analysis the implementation of this tiny compiler system. </p>
 
 <a name="Oters"></a>
 ##[Others](#Menu)
