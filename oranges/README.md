@@ -5,7 +5,7 @@
 [Menu](#Menu)</br>
 [Description](#Description)</br>
 [Tools](#Tools)</br>
-[Oters](#Oters)
+[Others](#Others)
 
 <a name="Description"></a>
 ##[Description](#Menu)
@@ -34,8 +34,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<strong>objdump</strong> -- is a tool for analysising memory and file system used in our proj.</br>
 </p>
 
-<a name="Oters"></a>
-##[Oters](#Menu)
+<a name="Others"></a>
+##[Others](#Menu)
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;It's great honours to me if it can make any benefit for you. Any problems in using it, please contract <a href="mailto:newplan001@163.com"><strong>ME</strong></a>.</p>
 
 <p align="right">NEWPLAN</br>2016/10/15</p>
