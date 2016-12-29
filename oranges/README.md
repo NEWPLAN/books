@@ -12,7 +12,7 @@
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;This responbility is consisted of some thought, notices and some codes when i read about < Oranges >. all the codes are checked one by one and try to make sure that ecah codes is running correctlly in <em> Linux Plantform</em> :).</br>&nbsp;&nbsp;&nbsp;&nbsp;There are 11 folders in it.</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>chap1</strong> is about a simple and basic boots code. using .asm.</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>chap3</strong> is about protect modle on X86 plantform. using .asm</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>chap4</strong> is about advanced protect modle on X86 plantform. using .asm</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>chap4</strong> is about advanced protect modle on X86 plantform. using .asm.</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>chap5</strong> is about a oroginal kernel, using .asm and .c, in this part the author using C to code and init IDT/GDT... finally, open the 83599 interrupter and capture signal of keyboard</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>chap6</strong> is about process in a kernel</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>chap7</strong> is about I/O system in a kernel</br>
