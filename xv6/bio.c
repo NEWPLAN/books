@@ -4,7 +4,7 @@
 // cached copies of disk block contents.  Caching disk blocks
 // in memory reduces the number of disk reads and also provides
 // a synchronization point for disk blocks used by multiple processes.
-// 
+//
 // Interface:
 // * To get a buffer for a particular disk block, call bread.
 // * After changing buffer data, call bwrite to write it to disk.
@@ -12,10 +12,10 @@
 // * Do not use the buffer after calling brelse.
 // * Only one process at a time can use a buffer,
 //     so do not keep them longer than necessary.
-// 
+//
 // The implementation uses three state flags internally:
 // * B_BUSY: the block has been returned from bread
-//     and has not been passed back to brelse.  
+//     and has not been passed back to brelse.
 // * B_VALID: the buffer data has been read from the disk.
 // * B_DIRTY: the buffer data has been modified
 //     and needs to be written to disk.
@@ -26,7 +26,8 @@
 #include "spinlock.h"
 #include "buf.h"
 
-struct {
+struct
+{
   struct spinlock lock;
   struct buf buf[NBUF];
 
@@ -35,8 +36,7 @@ struct {
   struct buf head;
 } bcache;
 
-void
-binit(void)
+void binit(void)
 {
   struct buf *b;
 
@@ -46,7 +46,8 @@ binit(void)
   // Create linked list of buffers
   bcache.head.prev = &bcache.head;
   bcache.head.next = &bcache.head;
-  for(b = bcache.buf; b < bcache.buf+NBUF; b++){
+  for (b = bcache.buf; b < bcache.buf + NBUF; b++)
+  {
     b->next = bcache.head.next;
     b->prev = &bcache.head;
     b->dev = -1;
@@ -65,11 +66,14 @@ bget(uint dev, uint sector)
 
   acquire(&bcache.lock);
 
- loop:
+loop:
   // Is the sector already cached?
-  for(b = bcache.head.next; b != &bcache.head; b = b->next){
-    if(b->dev == dev && b->sector == sector){
-      if(!(b->flags & B_BUSY)){
+  for (b = bcache.head.next; b != &bcache.head; b = b->next)
+  {
+    if (b->dev == dev && b->sector == sector)
+    {
+      if (!(b->flags & B_BUSY))
+      {
         b->flags |= B_BUSY;
         release(&bcache.lock);
         return b;
@@ -80,8 +84,10 @@ bget(uint dev, uint sector)
   }
 
   // Not cached; recycle some non-busy and clean buffer.
-  for(b = bcache.head.prev; b != &bcache.head; b = b->prev){
-    if((b->flags & B_BUSY) == 0 && (b->flags & B_DIRTY) == 0){
+  for (b = bcache.head.prev; b != &bcache.head; b = b->prev)
+  {
+    if ((b->flags & B_BUSY) == 0 && (b->flags & B_DIRTY) == 0)
+    {
       b->dev = dev;
       b->sector = sector;
       b->flags = B_BUSY;
@@ -99,7 +105,7 @@ bread(uint dev, uint sector)
   struct buf *b;
 
   b = bget(dev, sector);
-  if(!(b->flags & B_VALID))
+  if (!(b->flags & B_VALID))
     iderw(b);
   return b;
 }
@@ -108,7 +114,7 @@ bread(uint dev, uint sector)
 void
 bwrite(struct buf *b)
 {
-  if((b->flags & B_BUSY) == 0)
+  if ((b->flags & B_BUSY) == 0)
     panic("bwrite");
   b->flags |= B_DIRTY;
   iderw(b);
@@ -119,7 +125,7 @@ bwrite(struct buf *b)
 void
 brelse(struct buf *b)
 {
-  if((b->flags & B_BUSY) == 0)
+  if ((b->flags & B_BUSY) == 0)
     panic("brelse");
 
   acquire(&bcache.lock);

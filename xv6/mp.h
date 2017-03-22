@@ -1,6 +1,7 @@
 // See MultiProcessor Specification Version 1.[14]
 
-struct mp {             // floating pointer
+struct mp               // floating pointer
+{
   uchar signature[4];           // "_MP_"
   void *physaddr;               // phys addr of MP config table
   uchar length;                 // 1
@@ -11,7 +12,8 @@ struct mp {             // floating pointer
   uchar reserved[3];
 };
 
-struct mpconf {         // configuration table header
+struct mpconf           // configuration table header
+{
   uchar signature[4];           // "PCMP"
   ushort length;                // total table length
   uchar version;                // [14]
@@ -26,18 +28,20 @@ struct mpconf {         // configuration table header
   uchar reserved;
 };
 
-struct mpproc {         // processor table entry
+struct mpproc           // processor table entry
+{
   uchar type;                   // entry type (0)
   uchar apicid;                 // local APIC id
   uchar version;                // local APIC verison
   uchar flags;                  // CPU flags
-    #define MPBOOT 0x02           // This proc is the bootstrap processor.
+#define MPBOOT 0x02           // This proc is the bootstrap processor.
   uchar signature[4];           // CPU signature
   uint feature;                 // feature flags from CPUID instruction
   uchar reserved[8];
 };
 
-struct mpioapic {       // I/O APIC table entry
+struct mpioapic         // I/O APIC table entry
+{
   uchar type;                   // entry type (2)
   uchar apicno;                 // I/O APIC id
   uchar version;                // I/O APIC version

@@ -1,4 +1,5 @@
-struct file {
+struct file
+{
   enum { FD_NONE, FD_PIPE, FD_INODE } type;
   int ref; // reference count
   char readable;
@@ -10,7 +11,8 @@ struct file {
 
 
 // in-memory copy of an inode
-struct inode {
+struct inode
+{
   uint dev;           // Device number
   uint inum;          // Inode number
   int ref;            // Reference count
@@ -21,14 +23,15 @@ struct inode {
   short minor;
   short nlink;
   uint size;
-  uint addrs[NDIRECT+1];
+  uint addrs[NDIRECT + 1];
 };
 #define I_BUSY 0x1
 #define I_VALID 0x2
 
 // table mapping major device number to
 // device functions
-struct devsw {
+struct devsw
+{
   int (*read)(struct inode*, char*, int);
   int (*write)(struct inode*, char*, int);
 };

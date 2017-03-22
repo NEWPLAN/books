@@ -2,7 +2,8 @@
 #define NSEGS     7
 
 // Per-CPU state
-struct cpu {
+struct cpu
+{
   uchar id;                    // Local APIC ID; index into cpus[] below
   struct context *scheduler;   // swtch() here to enter scheduler
   struct taskstate ts;         // Used by x86 to find stack for interrupt
@@ -10,7 +11,7 @@ struct cpu {
   volatile uint started;       // Has the CPU started?
   int ncli;                    // Depth of pushcli nesting.
   int intena;                  // Were interrupts enabled before pushcli?
-  
+
   // Cpu-local storage variables; see below
   struct cpu *cpu;
   struct proc *proc;           // The currently-running process.
@@ -41,7 +42,8 @@ extern struct proc *proc asm("%gs:4");     // cpus[cpunum()].proc
 // The layout of the context matches the layout of the stack in swtch.S
 // at the "Switch stacks" comment. Switch doesn't save eip explicitly,
 // but it is on the stack and allocproc() manipulates it.
-struct context {
+struct context
+{
   uint edi;
   uint esi;
   uint ebx;
@@ -52,7 +54,8 @@ struct context {
 enum procstate { UNUSED, EMBRYO, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 
 // Per-process state
-struct proc {
+struct proc
+{
   uint sz;                     // Size of process memory (bytes)
   pde_t* pgdir;                // Page table
   char *kstack;                // Bottom of kernel stack for this process

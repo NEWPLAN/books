@@ -1,4 +1,4 @@
-// This file contains definitions for the 
+// This file contains definitions for the
 // x86 memory management unit (MMU).
 
 // Eflags register
@@ -49,7 +49,8 @@
 //PAGEBREAK!
 #ifndef __ASSEMBLER__
 // Segment Descriptor
-struct segdesc {
+struct segdesc
+{
   uint lim_15_0 : 16;  // Low bits of segment limit
   uint base_15_0 : 16; // Low bits of segment base address
   uint base_23_16 : 8; // Middle bits of segment base address
@@ -106,7 +107,7 @@ struct segdesc {
 // | Page Directory |   Page Table   | Offset within Page  |
 // |      Index     |      Index     |                     |
 // +----------------+----------------+---------------------+
-//  \--- PDX(va) --/ \--- PTX(va) --/ 
+//  \--- PDX(va) --/ \--- PTX(va) --/
 
 // page directory index
 #define PDX(va)         (((uint)(va) >> PDXSHIFT) & 0x3FF)
@@ -147,7 +148,8 @@ struct segdesc {
 typedef uint pte_t;
 
 // Task state segment format
-struct taskstate {
+struct taskstate
+{
   uint link;         // Old ts selector
   uint esp0;         // Stack pointers and segment selectors
   ushort ss0;        //   after an increase in privilege level
@@ -189,7 +191,8 @@ struct taskstate {
 
 // PAGEBREAK: 12
 // Gate descriptors for interrupts and traps
-struct gatedesc {
+struct gatedesc
+{
   uint off_15_0 : 16;   // low 16 bits of offset in segment
   uint cs : 16;         // code segment selector
   uint args : 5;        // # args, 0 for interrupt/trap gates

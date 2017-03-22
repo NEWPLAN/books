@@ -1,4 +1,4 @@
-// On-disk file system format. 
+// On-disk file system format.
 // Both the kernel and user programs use this header file.
 
 // Block 0 is unused.
@@ -12,7 +12,8 @@
 #define BSIZE 512  // block size
 
 // File system super block
-struct superblock {
+struct superblock
+{
   uint size;         // Size of file system image (blocks)
   uint nblocks;      // Number of data blocks
   uint ninodes;      // Number of inodes.
@@ -24,13 +25,14 @@ struct superblock {
 #define MAXFILE (NDIRECT + NINDIRECT)
 
 // On-disk inode structure
-struct dinode {
+struct dinode
+{
   short type;           // File type
   short major;          // Major device number (T_DEV only)
   short minor;          // Minor device number (T_DEV only)
   short nlink;          // Number of links to inode in file system
   uint size;            // Size of file (bytes)
-  uint addrs[NDIRECT+1];   // Data block addresses
+  uint addrs[NDIRECT + 1]; // Data block addresses
 };
 
 // Inodes per block.
@@ -48,7 +50,8 @@ struct dinode {
 // Directory is a file containing a sequence of dirent structures.
 #define DIRSIZ 14
 
-struct dirent {
+struct dirent
+{
   ushort inum;
   char name[DIRSIZ];
 };

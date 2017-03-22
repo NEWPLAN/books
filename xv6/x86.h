@@ -64,7 +64,7 @@ lgdt(struct segdesc *p, int size)
 {
   volatile ushort pd[3];
 
-  pd[0] = size-1;
+  pd[0] = size - 1;
   pd[1] = (uint)p;
   pd[2] = (uint)p >> 16;
 
@@ -78,7 +78,7 @@ lidt(struct gatedesc *p, int size)
 {
   volatile ushort pd[3];
 
-  pd[0] = size-1;
+  pd[0] = size - 1;
   pd[1] = (uint)p;
   pd[2] = (uint)p >> 16;
 
@@ -121,7 +121,7 @@ static inline uint
 xchg(volatile uint *addr, uint newval)
 {
   uint result;
-  
+
   // The + in "+m" denotes a read-modify-write operand.
   asm volatile("lock; xchgl %0, %1" :
                "+m" (*addr), "=a" (result) :
@@ -139,7 +139,7 @@ rcr2(void)
 }
 
 static inline void
-lcr3(uint val) 
+lcr3(uint val)
 {
   asm volatile("movl %0,%%cr3" : : "r" (val));
 }
@@ -147,7 +147,8 @@ lcr3(uint val)
 //PAGEBREAK: 36
 // Layout of the trap frame built on the stack by the
 // hardware and by trapasm.S, and passed to trap().
-struct trapframe {
+struct trapframe
+{
   // registers as pushed by pusha
   uint edi;
   uint esi;
