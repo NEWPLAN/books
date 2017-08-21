@@ -89,10 +89,10 @@ def main():
         print str(i) + ' [*]发送一个计算机ARP欺骗包'
         
         
-        s = threading.Thread(target=sendp,args=(pktgateway,),kwargs={'iface':interface,})
-        s.start()
-        s.join()
-        print str(i) + ' [*]发送一个网关ARP欺骗包'
+        #s = threading.Thread(target=sendp,args=(pktgateway,),kwargs={'iface':interface,})
+        #s.start()
+        #s.join()
+        #print str(i) + ' [*]发送一个网关ARP欺骗包'
         i += 1
 
 
